@@ -57,7 +57,7 @@ func (b *Boid) borderBounce(position, maxborder float64) float64 {
 func (b *Boid) moveOne() {
 	acceleration := b.calcAcceleration()
 	rLock.Lock()
-	b.Velocity = b.Velocity.Add(acceleration).Limit(-5, 5)
+	b.Velocity = b.Velocity.Add(acceleration).Limit(-1, 1)
 	//remove old position or location from map
 	boidMap[int(b.Position.X)][int(b.Position.Y)] = -1
 	b.Position = b.Position.Add(b.Velocity)
