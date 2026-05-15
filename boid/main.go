@@ -8,19 +8,21 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
+type boidId int
+
 const (
 	screenWidth      = 640.0
 	screenHeight     = 360.0
 	boidCount        = 500
-	viewRadius       = 50
+	viewRadius       = 13
 	adjustmentFactor = 0.015
 )
 
 var (
 	green   = color.RGBA{10, 255, 50, 255}
 	boids   [boidCount]*Boid
-	boidMap [screenWidth + 1][screenHeight + 1]int
-	lock sync.Mutex
+	boidMap [screenWidth + 1][screenHeight + 1]boidId
+	rLock    sync.RWMutex
 )
 
 type Game struct{}
